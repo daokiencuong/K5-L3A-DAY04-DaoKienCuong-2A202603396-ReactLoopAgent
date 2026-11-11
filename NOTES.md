@@ -48,6 +48,10 @@ Các incident chi tiết trong trace đều thuộc tháng 11/2026. Nguyên nhâ
 - Lỗi đã giải quyết: Với A5, agent không còn khẳng định có hoặc không có incident trong năm 2025 dựa trên tập 50 incident gần nhất; trace có `validation_limited_history`. Điểm A5 tăng từ 35 lên 100. H2 đạt 100 ở cả hai lần; lần sau trace gọi cả `get_status` và `get_incident_details` để trả lời snapshot hiện tại cùng incident lịch sử.
 - Lỗi còn lại hoặc mới xuất hiện: H3 (100 → 65) nói ID không có trong hệ thống dù tool chỉ tìm trong 50 incident gần nhất. H7 (65 → 70) báo timeout nhưng sau đó vẫn kết luận Cloudflare operational. E2 (100 → 75) và E1 (65 → 50) cũng giảm; cần đọc lại answer và trace thay vì chỉ dựa vào điểm judge.
 
+### Kết quả eval bonus
+
+Đã chạy eval bonus trên đủ 10 case; cả 10 case đều được chấm, không có case `unscored`. Điểm trung bình là **83.5/100**. Kết quả nằm trong `eval_bonus.json`. Điểm cao nhất là B6 và B8 (100); điểm thấp nhất là B5 (60).
+
 ## 5. Giới hạn
 
-Judge là LLM dùng cùng model `gpt-4o-mini` với agent nên điểm có thể biến động hoặc nhận xét chưa khớp hoàn toàn với bằng chứng. Snapshot chỉ đại diện cho thời điểm được ghi nhận; status search giới hạn ở 50 incident gần nhất nên không chứng minh được lịch sử đầy đủ. Mỗi phiên bản chỉ được chạy một lần, vì vậy mức tăng 3.27 điểm chưa chứng minh agent ổn định qua nhiều lần chạy.
+Judge là LLM dùng cùng model `gpt-4o-mini` với agent nên điểm có thể biến động hoặc nhận xét chưa khớp hoàn toàn với bằng chứng. Snapshot chỉ đại diện cho thời điểm được ghi nhận; status search giới hạn ở 50 incident gần nhất nên không chứng minh được lịch sử đầy đủ. Mỗi phiên bản và bộ eval bonus chỉ được chạy một lần, vì vậy điểm eval và mức tăng 3.27 điểm chưa chứng minh agent ổn định qua nhiều lần chạy.
